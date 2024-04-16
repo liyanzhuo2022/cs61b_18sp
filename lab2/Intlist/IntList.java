@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -78,11 +78,19 @@ public class IntList {
     /**
      * Returns a list consisting of the elements of A followed by the
      * *  elements of B.  May modify items of A. Don't use 'new'.
+     * finished and tested in java tutor!
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        if (A == null){
+            return B;
+        }
+        IntList temp = A;
+        while (temp.rest != null) {
+            temp = temp.rest;
+        }
+        temp.rest = B;
+        return A;
     }
 
     /**
@@ -90,9 +98,48 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        /* first create the returned list using new, set the first element as A.first */
+        IntList cp = new IntList(A.first, null);
+        /*copy A.rest to cp.rest*/
+        IntList p = cp;
+        A = A.rest;
+        while (A != null){
+            IntList temp = new IntList(A.first, null);
+            p.rest = temp;
+            A = A.rest;
+            p = p.rest;
+        }
+        p.rest = B;
+        return cp;
     }
+    /**This is a recursive way of doing so.
+     * Looks much smarter than what I have done...
+     * Always think of a recursive way!
+     *
+     *        if (A == null){
+     *             return B;
+     *         }
+     *         return new IntList(A.first,catenate(A.rest, B));
+     * */
+
+
+
+    /*main() just for test*/
+    public static void main(String[] args){
+        IntList L = new IntList(15, null);
+        L = new IntList(10, L);
+        L = new IntList(5, L);
+
+        IntList Z = new IntList(15, null);
+        Z = new IntList(10, Z);
+        Z = new IntList(5, Z);
+
+        IntList ca = catenate(L, Z);
+    }
+
+
+
+
 
 
 
