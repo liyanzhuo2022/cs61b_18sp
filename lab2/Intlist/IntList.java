@@ -134,7 +134,9 @@ public class IntList {
         Z = new IntList(10, Z);
         Z = new IntList(5, Z);
 
-        IntList ca = catenate(L, Z);
+        /*IntList ca = catenate(L, Z);*/
+        IntList x = squareListRecursive(L);
+        int m = x.first;
     }
 
 
