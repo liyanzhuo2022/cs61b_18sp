@@ -1,4 +1,4 @@
-public class ArrayDeque <T>{
+public class ArrayDeque<T> {
     private T[] items;
     private int size;
     private int nextFirst;
@@ -31,7 +31,7 @@ public class ArrayDeque <T>{
     }
 
     // Resizes the list.
-    public void resize(int capability) {
+    private void resize(int capability) {
         T[] a = (T[]) new Object[capability];
         int index = getBehind(nextFirst);
         for (int i = 0; i < size; i++) {
@@ -139,7 +139,7 @@ public class ArrayDeque <T>{
         int i = getBehind(nextFirst);
         while (index != 0) {
             i = getBehind(i);
-            index --;
+            index--;
         }
         return items[i];
     }

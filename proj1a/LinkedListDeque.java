@@ -58,6 +58,7 @@ public class LinkedListDeque<T> {
             System.out.print(p.item + " ");
             p = p.next;
         }
+        System.out.println();
     }
 
     // Removes and returns the item at the front of the deque.
@@ -86,8 +87,9 @@ public class LinkedListDeque<T> {
 
         size -= 1;
         sentinel.prev = p.prev;
-        p.prev.next = null;
+        p.prev.next = sentinel;
         p.prev = null;
+        p.next = null;
         return p.item;
     }
 
