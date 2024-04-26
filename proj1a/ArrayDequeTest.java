@@ -7,12 +7,6 @@ public class ArrayDequeTest {
         System.out.println("testing get prev and behind");
         ArrayDeque<Integer> L = new ArrayDeque<>();
         assertEquals(0, L.size());
-        /**
-        assertEquals(4, L.getPrev(5));
-        assertEquals(6, L.getBehind(5));
-        assertEquals(0, L.getBehind(7));
-        assertEquals(7, L.getPrev(0));
-         */
         System.out.println("tests get prev and behind passed");
     }
 
