@@ -14,7 +14,7 @@ public class ArrayDeque<T> {
     }
 
     // Helper methods, to get the next node
-    public int getPrev(int x) {
+    private int getPrev(int x) {
         x -= 1;
         if (x < 0) {
             x += items.length;
@@ -22,7 +22,7 @@ public class ArrayDeque<T> {
         return x;
     }
 
-    public int getBehind(int x) {
+    private int getBehind(int x) {
         x += 1;
         if (x > items.length - 1) {
             x -= items.length;
@@ -69,6 +69,7 @@ public class ArrayDeque<T> {
         if (size == items.length) {
             resize(size * 2);
         }
+
         items[nextLast] = item;
         nextLast = getBehind(nextLast);
         size += 1;
