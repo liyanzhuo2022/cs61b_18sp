@@ -31,8 +31,8 @@ public class ArrayDeque<T> {
     }
 
     // Resizes the list.
-    private void resize(int capability) {
-        T[] a = (T[]) new Object[capability];
+    private void resize(int capacity) {
+        T[] a = (T[]) new Object[capacity];
         int index = getBehind(nextFirst);
         for (int i = 0; i < size; i++) {
             a[i] = items[index];
@@ -107,8 +107,7 @@ public class ArrayDeque<T> {
         items[index] = null;
         nextFirst = index;
 
-        double ratio = (double) size / items.length;
-        if (size >= 16 && ratio < RATIO) {
+        if (items.length >= 16 && size < items.length * RATIO) {
             resize(items.length / 2);
         }
         return first;
@@ -126,9 +125,8 @@ public class ArrayDeque<T> {
         T last = items[index];
         items[index] = null;
         nextLast = index;
-        
-        double ratio = (double) size / items.length;
-        if (size >= 16 && ratio < RATIO) {
+
+        if (items.length >= 16 && size < items.length * RATIO) {
             resize(items.length / 2);
         }
         return last;
