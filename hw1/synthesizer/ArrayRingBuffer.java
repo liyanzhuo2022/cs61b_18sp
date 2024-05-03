@@ -65,7 +65,11 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      */
     @Override
     public T peek() {
-        return rb[first];
+        if (isEmpty()) {
+            throw new RuntimeException("Ring Buffer Underflow");
+        } else {
+            return rb[first];
+        }
     }
 
     // When you get to part 5, implement the needed code to support iteration.
