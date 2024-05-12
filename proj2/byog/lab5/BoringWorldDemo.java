@@ -24,13 +24,17 @@ public class BoringWorldDemo {
             }
         }
 
-        // fills in a block 14 tiles wide by 4 tiles tall
-        for (int x = 20; x < 35; x += 1) {
-            for (int y = 5; y < 10; y += 1) {
-                world[x][y] = Tileset.WALL;
+        // fills in a block (x?) tiles wide by (y?) tiles tall
+        /**
+        for (int x = 0; x < 1; x += 1) {
+            for (int y = 0; y < 2; y += 1) {
+                world[x][y] = Tileset.FLOWER;
             }
-        }
+        }*/
 
+        Position p = new Position(3, 10);
+        TETile type = Tileset.WALL;
+        Hexagon.addHexagon(world, p, 6, type);
         // draws the world to the screen
         ter.renderFrame(world);
     }
