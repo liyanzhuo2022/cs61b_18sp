@@ -5,6 +5,8 @@ import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 
 import java.util.Random;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Game {
     TERenderer ter = new TERenderer();
@@ -31,7 +33,7 @@ public class Game {
      * @return the 2D TETile[][] representing the state of the world
      */
     public TETile[][] playWithInputString(String input) {
-        // TODO: Fill out this method to run the game using the input passed in,
+        // Fill out this method to run the game using the input passed in,
         // and return a 2D tile representation of the finalWorldFrame that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
         ter.initialize(WIDTH, HEIGHT);
@@ -42,11 +44,21 @@ public class Game {
             }
         }
 
-
-        long SEED = input.hashCode();
-        Random random = new Random(SEED);
+        String numbers = extractNumbers(input);
+        long seed = numbers.hashCode();
+        Random random = new Random(seed);
         Room.drawMultipleRooms(random, finalWorldFrame);
 
         return finalWorldFrame;
+    }
+
+    private static String extractNumbers(String input) {
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            return matcher.group();
+        }
+        return "No number found";
     }
 }

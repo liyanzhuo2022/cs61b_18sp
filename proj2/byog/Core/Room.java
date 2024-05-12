@@ -50,7 +50,7 @@ public class Room {
     }
 
     private static void connectTwoRooms(Room r1, Room r2, TETile[][] world) {
-        Position p1= r1.connect;
+        Position p1 = r1.connect;
         Position p2 = r2.connect;
         Hallways.drawHallway(p1, p2, world);
     }
@@ -66,7 +66,7 @@ public class Room {
         int cy = random.nextInt(length) + p.y;
         Position connect = new Position(cx, cy);
 
-        if (checkOverLap(width, length, p, world) == false) {
+        if (!checkOverLap(width, length, p, world)) {
             drawFloor(width, length, p, world);
             drawWall(width, length, p, world);
             Room room = new Room(width, length, p, connect);
