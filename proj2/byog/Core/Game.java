@@ -36,7 +36,7 @@ public class Game {
         // Fill out this method to run the game using the input passed in,
         // and return a 2D tile representation of the finalWorldFrame that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
-        ter.initialize(WIDTH, HEIGHT);
+
         TETile[][] finalWorldFrame = new TETile[WIDTH][HEIGHT];
         for (int x = 0; x < WIDTH; x += 1) {
             for (int y = 0; y < HEIGHT; y += 1) {
