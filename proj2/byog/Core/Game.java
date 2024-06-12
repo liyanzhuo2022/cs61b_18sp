@@ -64,7 +64,6 @@ public class Game implements Serializable {
                 char c = StdDraw.nextKeyTyped();
                 if (Character.isDigit(c)) {
                     numbers.append(c);
-                    System.out.println(c);
                 } else {
                     TETile[][] world = game.generateWorldWithSeed(String.valueOf(numbers));
                     Player player = new Player();
@@ -133,7 +132,6 @@ public class Game implements Serializable {
      * When the user presses Q, save the current game into a file.
      * */
     public static void saveGame(GameState gameSate) {
-        System.out.println("Save Game Called!");
 
         File f = new File("./game.ser");
         try {

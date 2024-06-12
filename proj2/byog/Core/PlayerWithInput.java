@@ -48,7 +48,6 @@ public class PlayerWithInput implements Serializable {
         Position next;
 
         for (char input: command) {
-            System.out.println(input);
             input = Character.toLowerCase(input);
             next = getNextPos(input, world);
 
@@ -131,7 +130,6 @@ public class PlayerWithInput implements Serializable {
         if (input == 'q') {
             GameState gameState = new GameState(world, this);
             Game.saveGame(gameState);
-            System.out.println("Player Position: " + current.x + "," + current.y);
         }
 
         return newPos;
