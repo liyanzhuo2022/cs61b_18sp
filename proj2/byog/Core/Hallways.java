@@ -3,11 +3,20 @@ import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 import byog.lab5.Position;
 
+import java.io.Serializable;
+
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public class Hallways {
+public class Hallways implements Serializable {
+    private static final long serialVersionUID = 12312312312L;
 
+    /** The method draws a right angle hallway from room1's connect position
+     *  to room2's connect position.
+     * @param p1 the position of room1's connect point
+     * @param p2 the position of room2's connect point
+     * @param world the world state
+     * */
     public static void drawHallway(Position p1, Position p2, TETile[][] world) {
         Position mid = new Position(p1.x, p2.y);
         drawStraight(p1, p2, world);

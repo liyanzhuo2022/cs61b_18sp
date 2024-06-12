@@ -1,0 +1,90 @@
+Game.java
+
+    /**TODO:
+     * Method used for playing a fresh game. The game should start from the main menu.
+     * Finish the method at the last.
+     */
+    public void playWithKeyboard() {}
+
+    /**TODO: Get seed
+    */
+
+    /**TODO: Load and Quit command
+     * !!!the Java interface Serializable
+     * [SaveDemo]
+    */
+
+
+Map.java
+
+    /** Method used to generate a World Map following the requirements in Phase 1.
+     * @param random the Random object generate by the user input
+     * @param world the 2D TETile[][] representing the worldFrame at the beginning,
+     *              which will be mutated into the World Map.
+     * */
+    public static void drawMap(Random random, TETile[][] world) {}
+
+    /**Generate some special TETile on the World Map.
+     * The number and position should be random, except door.
+     * Tree, Flower, Sand, Door(should be added in Tileset).
+     * */
+
+
+Player.java
+
+    Note: the set has a player tile.
+
+    /**Initialize the Player's position.
+     * The method would put the Player on the 1st floor TETile*/
+    public void initialPlayer(TETile[][] world) {}
+
+    /**
+     * The player must be able to control some sort of entity
+     * that can moved around using the W, A, S, and D keys.
+     * The player could only walk on the FLOOR (or, change it into FLOOR.)
+     * @param world the state of the world, which will be mutated
+     *              and shown on the screen
+     * */
+    public void playerWalk(TETile[][] world) {}
+
+    /**
+     * creative mechanics 1: Transport the Player to a random FLOOR tile
+     * if the Player touches the Sand.
+    */
+    public void playTrans(TETile[][] world) {}
+
+    /**The entity must be able to interact with the world in some way.
+     * creative mechanics 2: player will get or lose scores depends on
+     * what she touches.
+     * When the player touches something special, this method will
+     * record the current Scores and show them on the screen.
+     * Player will lose the Game if the current Score is negative.
+     * Also, the things got touched become FLOOR.
+     * */
+    public void playerScores(TETile[][] world) {}
+
+    /**
+     * creative mechanics 3: player will win the Game if she touches
+     * door(a special wall) with more than 3 Scores.
+     */
+     public void playerLeave() {}
+
+
+GUI.java
+
+    /**
+     * Method used for drawing the start Main Menu
+     * when playWithKeyboard().
+     * */
+    public void drawMenu() {}
+
+    /**
+     * Helper method for load and quit commend.
+     * No idea how to do it yet.
+     * */
+
+     /** Heads Up Display
+      * It should show:
+      * 1. displays the description of the tile under the mouse pointer
+      * 2. the current Scores of the Player.
+     /

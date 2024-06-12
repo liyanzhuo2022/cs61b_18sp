@@ -3,10 +3,11 @@ import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 import byog.lab5.Position;
 
-import java.util.Arrays;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Room {
+public class Room implements Serializable {
+    private static final long serialVersionUID = 1231231231234L;
     int width;
     int length;
     Position p;
@@ -23,44 +24,17 @@ public class Room {
         return p.x;
     }
 
-    public static void drawMultipleRooms(Random random, TETile[][] world) {
-        int numOfRooms = random.nextInt(45) + 20;
-        int numcp = numOfRooms;
-        Room[] rooms = new Room[numOfRooms];
-        int index = 0;
-        while (numOfRooms > 0) {
-            Room room = drawOneRoom(random, world);
-            if (room != null) {
-                rooms[index] = room;
-                numOfRooms--;
-                index++;
-            }
-        }
-
-        RoomComparator comparator = new RoomComparator();
-        Arrays.sort(rooms, comparator);
-
-        connectRooms(rooms, numcp, world);
-    }
-
-    private static void connectRooms(Room[] rooms, int n, TETile[][] world) {
-        for (int i = 1; i < n; i++) {
-            connectTwoRooms(rooms[i - 1], rooms[i], world);
-        }
-    }
-
-    private static void connectTwoRooms(Room r1, Room r2, TETile[][] world) {
-        Position p1 = r1.connect;
-        Position p2 = r2.connect;
-        Hallways.drawHallway(p1, p2, world);
-    }
-
-
-    private static Room drawOneRoom(Random random, TETile[][] world) {
+    /** Calling the method will draw a non-overlap room with floor and wall, and return the room.
+     * @param random the Random object generate by the user input
+     * @param world the 2D TETile[][] representing the world state,
+     *              which will be mutated with an additional room.
+     * @return the room object that is drawn by the method
+     * */
+    public static Room drawOneRoom(Random random, TETile[][] world) {
         int width = random.nextInt(6) + 1;
         int length = random.nextInt(6) + 1;
-        int x = random.nextInt(Game.WIDTH - width - 1) + 1;
-        int y = random.nextInt(Game.HEIGHT - length - 1) + 1;
+        int x = random.nextInt(Game.WIDTH - width - 1 - 5) + 1; // leave some space for HUD
+        int y = random.nextInt(Game.HEIGHT - length - 1 - 5) + 1;
         Position p = new Position(x, y);
         int cx = random.nextInt(width) + p.x;
         int cy = random.nextInt(length) + p.y;
