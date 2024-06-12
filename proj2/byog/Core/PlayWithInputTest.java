@@ -11,9 +11,9 @@ import edu.princeton.cs.introcs.StdDraw;
 public class PlayWithInputTest {
 
     public static void main(String[] args) {
-        //compareWorlds("n123sswwdasdassadwas", "n123sss:q", "lwww");
+        compareWorlds("n123ssswww", "n123sss:q", "lwww");
         //generateWorld("n123sswwdasdassadwas");
-        generateWorld("n123wwwq");
+        //generateWorld("n123www");
         //generateWorld("lwww");
     }
 

@@ -164,7 +164,9 @@ public class Player implements Serializable {
      */
     private void moveToNext(TETile[][] world, Position next) {
         world[next.x][next.y] = PLAYER;
-        world[current.x][current.y] = FLOOR;
+        if (next.x != current.x || next.y != current.y) {
+            world[current.x][current.y] = FLOOR;
+        }
         current = next;
     }
 
