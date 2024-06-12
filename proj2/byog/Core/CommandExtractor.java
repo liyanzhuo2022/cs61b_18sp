@@ -11,7 +11,8 @@ public class CommandExtractor {
             String remainingString = input.substring(1);
 
             int firstNonDigitIndex = 0;
-            while (firstNonDigitIndex < remainingString.length() && Character.isDigit(remainingString.charAt(firstNonDigitIndex))) {
+            while (firstNonDigitIndex < remainingString.length() &&
+                    Character.isDigit(remainingString.charAt(firstNonDigitIndex))) {
                 firstNonDigitIndex++;
             }
 

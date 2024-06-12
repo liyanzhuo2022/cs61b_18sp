@@ -4,7 +4,6 @@ import java.util.Arrays;
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 
-import edu.princeton.cs.introcs.StdDraw;
 
 /** Phase 2 Test */
 
@@ -30,7 +29,7 @@ public class PlayWithInputTest {
      * @param input1 the first Input String
      * @param input2 the second Input String
      * */
-    public static void compareWorlds(String input1, String input2, String input3 ) {
+    public static void compareWorlds(String input1, String input2, String input3) {
         Game game1 = new Game();
         TETile[][] world1 = game1.playWithInputString(input1);
         //showWorld(world1);

@@ -1,10 +1,8 @@
 package byog.Core;
 
-import byog.SaveDemo.World;
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
-import byog.lab5.Position;
 import edu.princeton.cs.introcs.StdDraw;
 
 import java.io.File;
