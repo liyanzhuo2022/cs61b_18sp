@@ -5,8 +5,8 @@ import edu.princeton.cs.introcs.StdStats;
 
 public class PercolationStats {
     //create an array to store the fraction in each experiment, the size is T
-    double[] fractions;
-    int T;
+    private double[] fractions;
+    private int T;
 
     // perform T independent experiments on an N-by-N grid
     public PercolationStats(int N, int T, PercolationFactory pf) {
@@ -21,7 +21,7 @@ public class PercolationStats {
         for (int i = 0; i < T; i++) {
             Percolation p = pf.make(N);
 
-            while(!p.percolates()) {
+            while (!p.percolates()) {
                 Position site = getRandomSite(p, N);
                 p.open(site.row, site.col);
             }
@@ -38,7 +38,7 @@ public class PercolationStats {
         do {
             row = StdRandom.uniform(N);
             col = StdRandom.uniform(N);
-        } while(p.isOpen(row, col));
+        } while (p.isOpen(row, col));
 
         return new Position(row, col);
     }

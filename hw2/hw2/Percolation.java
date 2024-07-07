@@ -2,6 +2,9 @@ package hw2;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class Percolation {
     private int N; // N-by-N grid
     private boolean[][] sites; // sites[row][col] = true means site in (row, col) is opened
@@ -13,11 +16,11 @@ public class Percolation {
     /**Use index to record the sites. This object contains virtual top and virtual
      * bottom sites, it is used to track percolation.
      * */
-    private WeightedQuickUnionUF SitesTracker;
+    private WeightedQuickUnionUF sitesTracker;
     /**This object is a copy of SitesTracker for solving backwash.
      * However, it doesn't contain the virtual bottom site for anti-backwash.
      * It is called when checking a site is full or not.*/
-    private WeightedQuickUnionUF FullTracker;
+    private WeightedQuickUnionUF fullTracker;
 
 
     /**The constructor creates N-by-N grid, with all sites initially blocked.
@@ -37,8 +40,8 @@ public class Percolation {
             }
         }
 
-        this.SitesTracker = new WeightedQuickUnionUF(N * N + 2);
-        this.FullTracker = new WeightedQuickUnionUF(N * N + 1);
+        this.sitesTracker = new WeightedQuickUnionUF(N * N + 2);
+        this.fullTracker = new WeightedQuickUnionUF(N * N + 1);
         this.virtualTop = N * N;
         this.virtualBottom = N * N + 1;
     }
@@ -53,7 +56,7 @@ public class Percolation {
     /**Every site in sites[][] has a unique numerical index.
      * The method would get the site's index by its row and column.
      * */
-    public int getIndex(int row, int col) {
+    private int getIndex(int row, int col) {
         return row * N + col;
     }
 
@@ -66,36 +69,36 @@ public class Percolation {
 
         if (!isOpen(row, col)) {
             sites[row][col] = true;
-            numOpenSites ++;
+            numOpenSites++;
 
             // connect the site with its opened neighbors
             int index = getIndex(row, col);
             if (col + 1 < N && isOpen(row, col + 1)) {
-                SitesTracker.union(index, getIndex(row, col + 1));
-                FullTracker.union(index, getIndex(row, col + 1));
+                sitesTracker.union(index, getIndex(row, col + 1));
+                fullTracker.union(index, getIndex(row, col + 1));
             }
             if (col - 1 >= 0 && isOpen(row, col - 1)) {
-                SitesTracker.union(index, getIndex(row, col - 1));
-                FullTracker.union(index, getIndex(row, col - 1));
+                sitesTracker.union(index, getIndex(row, col - 1));
+                fullTracker.union(index, getIndex(row, col - 1));
             }
             if (row - 1 >= 0 && isOpen(row - 1, col)) {
-                SitesTracker.union(index, getIndex(row - 1, col));
-                FullTracker.union(index, getIndex(row - 1, col));
+                sitesTracker.union(index, getIndex(row - 1, col));
+                fullTracker.union(index, getIndex(row - 1, col));
             }
             if (row + 1 < N && isOpen(row + 1, col)) {
-                SitesTracker.union(index, getIndex(row + 1, col));
-                FullTracker.union(index, getIndex(row + 1, col));
+                sitesTracker.union(index, getIndex(row + 1, col));
+                fullTracker.union(index, getIndex(row + 1, col));
             }
 
-            if (row == N - 1) {
-                SitesTracker.union(index, virtualTop);
-                FullTracker.union(index, virtualTop);
-            }
             if (row == 0) {
-                SitesTracker.union(index, virtualBottom);
+                sitesTracker.union(index, virtualTop);
+                fullTracker.union(index, virtualTop);
+            }
+            if (row == N - 1) {
+                sitesTracker.union(index, virtualBottom);
             }
 
-            if (SitesTracker.connected(virtualTop, virtualBottom)) {
+            if (sitesTracker.connected(virtualTop, virtualBottom)) {
                 isPercolated = true;
             }
         }
@@ -117,7 +120,7 @@ public class Percolation {
     public boolean isFull(int row, int col) {
         checkException(row, col);
         int index = getIndex(row, col);
-        return (isOpen(row, col) && FullTracker.connected(index, virtualTop));
+        return (isOpen(row, col) && fullTracker.connected(index, virtualTop));
     }
 
 
@@ -125,6 +128,10 @@ public class Percolation {
     // If any bottom site is full, the grid is percolated.
     public boolean percolates() {
         return isPercolated;
+    }
+
+    public static void main(String[] args) {
+        Percolation perc5 = new Percolation(5);
     }
 
 }
